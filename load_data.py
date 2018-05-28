@@ -6,7 +6,6 @@ Created on Mon Apr  9 15:56:56 2018
 """
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def loadDatas():
@@ -21,19 +20,3 @@ def loadNames():
 def colonne(nom):
     datas = loadDatas()
     return datas[nom]
-
-datas = loadDatas()
-names = loadNames()
-print(names)
-
-for name in names:
-    print(datas[name])
-
-
-
-
-x = colonne("make")
-plt.plot(x, color = "blue")
-
-
-plt.show()
