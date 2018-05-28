@@ -20,3 +20,7 @@ def loadNames():
 def colonne(nom):
     datas = loadDatas()
     return datas[nom]
+
+def moyenneColonne(colonne):
+    return colonne.mean()
+        

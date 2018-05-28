@@ -14,12 +14,11 @@ names = ld.loadNames()
 print(names)
 
 #for name in names:
-#    print(datas[name])
+#    print(moyenneColonne(name))
 
-
-
-
-y = ld.colonne("all")
+y = ld.colonne("make")
+print("moyenne : ")
+print(ld.moyenneColonne(y))
 print(y)
 plt.plot(x, color = "blue")
 plt.show()
