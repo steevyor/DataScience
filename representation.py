@@ -13,14 +13,19 @@ datas = ld.loadDatas()
 names = ld.loadNames()
 print(names)
 
-for name in names:
-    print(datas[name])
+#for name in names:
+#    print(datas[name])
 
 
 
 
-x = ld.colonne("make")
+y = ld.colonne("all")
+print(y)
 plt.plot(x, color = "blue")
+plt.show()
 
 
+N = len(y)
+x = range(N)
+plt.bar(x, y, 3, color="blue")
 plt.show()
