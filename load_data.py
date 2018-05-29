@@ -4,7 +4,6 @@ Created on Mon Apr  9 15:56:56 2018
 
 @author: sonia
 """
-import numpy as np
 import pandas as pd
 
 
@@ -20,3 +19,7 @@ def loadNames():
 def colonne(nom):
     datas = loadDatas()
     return datas[nom]
+
+def moyenneColonne(colonne):  
+    return colonne.mean()
+        
