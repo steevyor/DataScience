@@ -7,15 +7,18 @@ Created on Mon May 28 13:17:06 2018
 
 import load_data as ld
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 
-sup = ['label', 'capital_average', 'capital_longest', 'capital_total']
-datas = ld.loadDatas()
-datas = datas.drop(columns = sup)
+sup = ['label']
+#sup = ['label', 'capital_average', 'capital_longest', 'capital_total']
+
+datasColonnes = ld.loadDatas()
+datas = datasColonnes.drop(columns = sup)
 names = ld.loadNames()
 names = names.drop(columns = sup)
-'''
+
 moyennes = []
 for name in names: 
     y = ld.colonne(name)
@@ -25,6 +28,7 @@ for name in names:
 y = ld.colonne("make")
 x = range(len(moyennes))
 plt.bar(x, moyennes, 0.5, color="lightslategrey")
+plt.figure(figsize = (50, 50))
 plt.show()  
 print("     Moyennes d'apparition de chaque mot")
 
@@ -59,92 +63,34 @@ for name in names:
     moyennesLabels["label"].append(name)
 print(moyennesLabels)
 
-for i in range(len(moyennesLabels["moyenne"])):
-    if moyennesLabels["moyenne"][i] > max1:
-        max1 = moyennesLabels["moyenne"][i]
-        label1 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max2:
-        max2 = moyennesLabels["moyenne"][i]
-        label2 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max3:
-        max3 = moyennesLabels["moyenne"][i]
-        label3 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max4:
-        max4 = moyennesLabels["moyenne"][i]
-        label4 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max5:
-        max5 = moyennesLabels["moyenne"][i]
-        label5 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max6:
-        max6 = moyennesLabels["moyenne"][i]
-        label6 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max7:
-        max7 = moyennesLabels["moyenne"][i]
-        label7 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max8:
-        max8 = moyennesLabels["moyenne"][i]
-        label8 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max9:
-        max9 = moyennesLabels["moyenne"][i]
-        label9 = moyennesLabels["label"][i]
-    elif moyennesLabels["moyenne"][i] > max10:
-        max10 = moyennesLabels["moyenne"][i]
-        label10 = moyennesLabels["label"][i]
-  
+
+#Graph spam ou non 
+labels = ld.colonne("label")
+count0 = 0
+count1=0
+for value in labels: 
+    if value == 0:
+        count0 = count0 + 1
+    else:
+        count1 = count1 + 1
         
         
-
-plt.plot((ld.colonne(label1)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label1)
-plt.plot((ld.colonne(label2)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label2)
-plt.plot((ld.colonne(label3)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label3)
-plt.plot((ld.colonne(label4)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label4)
-plt.plot((ld.colonne(label5)))
-plt.show() 
-print("     Fréquences d'apparition pour : ", label5)
-plt.plot((ld.colonne(label6)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label6)
-plt.plot((ld.colonne(label7)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label7)
-plt.plot((ld.colonne(label8)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label8)
-plt.plot((ld.colonne(label9)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label9)
-plt.plot((ld.colonne(label10)))
-plt.show()  
-print("     Fréquences d'apparition pour : ", label10)
-
-
-'''
-
- 
-
-N = 50
-x = datas['']
-print(x)
-y = ld.loadDatas()['label']
-print(y)
-#colors = np.random.rand(N)
-#area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
-
-plt.scatter(x, y, alpha=0.5)
+y = [count0, count1]
+x = np.arange(2)
+plt.bar(x, y, 0.10,align='center', color="khaki")
+plt.ylabel('Nombre de lignes')
+plt.xticks(x, ('Non spam', 'Spam'))
+plt.title('Répartition spam/non spam dans le datas set')
+plt.axis([-0.1, 1.1, 0, 3000])
 plt.show()
-
-        
-
     
     
+#Pour chaque mot, un graph
+for name in names: 
+    plt.plot((ld.colonne(name)))
+    plt.show()
+    print(name)
+
     
     
     
