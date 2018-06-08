@@ -39,43 +39,28 @@ classifiers = [ classifier.RandomForestClassifier(),
 
 c = classifier.Classifier()
 
-#print(c.best_fit(names, classifiers, X_train, Y_train))
+print(c.best_fit(names, classifiers, X_train, Y_train))
 
-#fit, ptrdict
+#fit and predict a simple randomForestClassifier
 clf = classifier.RandomForestClassifier()
 clf.fit(X_train, Y_train)
 clf.predict(X_test)
 print(clf.score(X_test, Y_test))
 
-#histocomparaison(c.return_final_array(names, classifiers, x, y),names)
+#Displays the performance differences between the selected algorythms
+# Multiple classifiers have been removed to keep our representation readable
+# and not overload user's CPU
+histocomparaison(c.return_final_array(names, classifiers, x, y),names)
 
-
+#We fit and predict on our data set with a tuned RandomForestClassifier
 clfBest = classifier.RandomForestClassifier(n_jobs = -1, n_estimators = 1000, warm_start=True, max_features=2,
                                oob_score=True,
                                random_state= hp.RANDOM_STATE)
 
 clfBest.fit(X_train, Y_train)
 print(clfBest.score(X_test, Y_test))
+
+#We call the hyper_param function from the hyper_param class. It will show the differences between 3 tuning
+#setups of randomForest hyper parameters. 
+hp.hyper_param(x,y)
                                
-                               
-#x = np.delete(x, (0), axis=0)
-#y = np.delete(y, (0), axis=0)
-
-#TrainingX = SplitX[0]
-#PredictX = SplitX[1]
-#
-#TrainingY = SplitY[0]
-#PredictY = SplitY[1]
-#
-#clf.fit(TrainingX, TrainingY)
-#
-#prediction = clf.predict(PredictX)
-#print(clf.score(prediction, PredictY))
-
-
-#PredictY
-#
-#
-#clf.fit(x,y)
-#print(clf.score(x,y))
-

@@ -30,8 +30,8 @@ ensemble_clfs = [
 error_rate = OrderedDict((label, []) for label, _ in ensemble_clfs)
 
 # Range of `n_estimators` values to explore.
-min_estimators = 10
-max_estimators = 20
+min_estimators = 50
+max_estimators = 100
 
 
 def hyper_param(x,y):

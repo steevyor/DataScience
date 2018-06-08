@@ -70,7 +70,7 @@ class Classifier(RandomForestClassifier):
 
 	
     def  return_final_array(self,names, classifiers, x, y): #Retourne la liste de tous les claissifiers 
-								avec les scores qui correpondent
+                                        								#avec les scores qui correpondent
         score_boucle_train = []
         final_array = []
         best=["",0]
