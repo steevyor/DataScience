@@ -30,10 +30,14 @@ ensemble_clfs = [
 error_rate = OrderedDict((label, []) for label, _ in ensemble_clfs)
 
 # Range of `n_estimators` values to explore.
+# We computed values between 50 and 2000 but it is quite a heavy computing task.
+# To just show the method and display its results we have fixed the min at 50 and
+# the max at 200.
 min_estimators = 50
 max_estimators = 100
 
-
+#Hyper parameter comparison fonction for the max_feature option, displaying results
+# in a plot
 def hyper_param(x,y):
 	for label, clf in ensemble_clfs:
     		for i in range(min_estimators, max_estimators + 1):
