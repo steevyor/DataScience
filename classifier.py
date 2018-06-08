@@ -22,12 +22,15 @@ import numpy as np
 import pickle
 RANDOM_STATE = 123
 
-
+#We chose RandomForestClassifier witch has the best result
 class Classifier(RandomForestClassifier):
     def __init__(self):
         pass
 
     def fit(self, X, y):
+	# -1 parameter on jobs takes all the cores of the cpu
+	# n_estimators : number of estimates
+	# max_feature : The number of features to consider when looking for the best split : None -> The number of features to consider when looking for the best split:
         self.clf = RandomForestClassifier(n_jobs = -1, n_estimators = 1000, warm_start=True, max_features=None,
                                oob_score=True,
                                random_state= RANDOM_STATE)
@@ -50,7 +53,7 @@ class Classifier(RandomForestClassifier):
         return self
 
 
-    def  best_fit(self,names, classifiers, x, y):
+    def  best_fit(self,names, classifiers, x, y): #Test all the classifiers in order to return the best one
         score_boucle_train = []
         final_array = []
         best=["",0]
@@ -66,7 +69,8 @@ class Classifier(RandomForestClassifier):
         return best
 
 	
-    def  return_final_array(self,names, classifiers, x, y):
+    def  return_final_array(self,names, classifiers, x, y): #Retourne la liste de tous les claissifiers 
+								avec les scores qui correpondent
         score_boucle_train = []
         final_array = []
         best=["",0]

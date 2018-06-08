@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 import hyper_param as hp
 import numpy as np
 
-def histocomparaison(valeurs,categories): #Method to create barchart
+#function made to create barchart
+def histocomparaison(valeurs,categories):
     plt.bar(range(len(valeurs)), valeurs,align="center",alpha=.5)
     plt.xticks(range(len(valeurs)), categories,rotation=90,fontsize=10)
     plt.show()
@@ -22,7 +23,8 @@ def histocomparaison(valeurs,categories): #Method to create barchart
 
 x = pp.preprocess(pp.buildDataSet())
 y = pp.buildTargets()
-      
+
+#splitted data      
 X_train, X_test, Y_train, Y_test = pp.divide(x,y)
 
 names = ["RandomForest", "KNeighbors", "DecisionTree", "GaussianNB", 
@@ -39,6 +41,7 @@ c = classifier.Classifier()
 
 #print(c.best_fit(names, classifiers, X_train, Y_train))
 
+#fit, ptrdict
 clf = classifier.RandomForestClassifier()
 clf.fit(X_train, Y_train)
 clf.predict(X_test)
