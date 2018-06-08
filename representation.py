@@ -10,15 +10,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+#Suppression des colonnes à décommenter selon les graphiques
+sup = ['label', 'capital_average', 'capital_longest', 'capital_total']
+#sup = ['label']
 
-sup = ['label']
-#sup = ['label', 'capital_average', 'capital_longest', 'capital_total']
-
+#Chargement des données
 datasColonnes = ld.loadDatas()
 datas = datasColonnes.drop(columns = sup)
 names = ld.loadNames()
 names = names.drop(columns = sup)
 
+#Génération des moyennes par mot
 moyennes = []
 for name in names: 
     y = ld.colonne(name)
@@ -33,38 +35,16 @@ plt.show()
 print("     Moyennes d'apparition de chaque mot")
 
 
-max1 = 0
-max2 = 0
-max3 = 0
-max4 = 0
-max5 = 0
-max6 = 0
-max7 = 0
-max8 = 0
-max9 = 0
-max10 = 0
-
-label1 = ""
-label2 = ""
-label3 = ""
-label4 = ""
-label5 = ""
-label6 = ""
-label7 = ""
-label8 = ""
-label9 = ""
-label10 = ""
-
 moyennesLabels = {"moyenne":[], "label":[]}
 for name in names: 
     y = ld.colonne(name)
     m = ld.moyenneColonne(y)
     moyennesLabels["moyenne"].append(m)
     moyennesLabels["label"].append(name)
-print(moyennesLabels)
+    print(m, " ", name)
 
 
-#Graph spam ou non 
+#Graph de la rfréquence d'apparition en fonction du numéro de ligne
 labels = ld.colonne("label")
 count0 = 0
 count1=0
@@ -85,12 +65,31 @@ plt.axis([-0.1, 1.1, 0, 3000])
 plt.show()
     
     
-#Pour chaque mot, un graph
+#Pour chaque mot, un graph de fréquence en fonction de la ligne
 for name in names: 
     plt.plot((ld.colonne(name)))
     plt.show()
     print(name)
 
+
+#Performances en enlevant des colonnes
+y = [0.9543, 0.9576, 0.9587, 0.9554, 0.9565, 0.9565]
+x = np.arange(6)
+plt.bar(x, y, 0.80,align='center', color="yellowgreen")
+plt.ylabel('Performances')
+plt.xticks(x, ('0.9543 ', '0.9576', '0.9587', '0.9554 ', '0.9565', '0.9565' )) 
+plt.title('Evolution des performances de notre classifier en fonction des données')
+plt.show()
     
+
+
+#Performances en faisant varier cross validation et hyper parametres
+y = [0.9418, 0.9551, 0.96 , 0.9446]
+x = np.arange(4)
+plt.bar(x, y, 0.40,align='center', color="yellowgreen")
+plt.ylabel('Performances')
+plt.xticks(x, ('RF cv sans hp', 'RF cv avec hp', 'RF n cv avec hp', 'RF n cv sans hp' )) 
+plt.title('Evolution des performances de notre classifier en fonction de la cross validation et des hyper paramètres')
+plt.show()
     
     
